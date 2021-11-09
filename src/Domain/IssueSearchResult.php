@@ -11,16 +11,10 @@ class IssueSearchResult
 {
     private string $expand;
 
-    /**
-     * @Serializer\SerializedName("startAt")
-     * @var int
-     */
+    /** @Serializer\SerializedName("startAt") */
     private int $startAt;
 
-    /**
-     * @Serializer\SerializedName("maxResults")
-     * @var int
-     */
+    /** @Serializer\SerializedName("maxResults") */
     private int $maxResults;
     private int $total;
 

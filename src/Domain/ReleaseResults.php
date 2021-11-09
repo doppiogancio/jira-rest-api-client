@@ -11,29 +11,17 @@ class ReleaseResults
 {
     private string $self;
 
-    /**
-     * @Serializer\SerializedName("nextPage")
-     * @var string
-     */
+    /** @Serializer\SerializedName("nextPage") */
     private string $nextPage;
 
-    /**
-     * @Serializer\SerializedName("maxResults")
-     * @var int
-     */
+    /** @Serializer\SerializedName("maxResults") */
     private int $maxResults;
 
-    /**
-     * @Serializer\SerializedName("startAt")
-     * @var int
-     */
+    /** @Serializer\SerializedName("startAt") */
     private int $startAt;
     private int $total;
 
-    /**
-     * @Serializer\SerializedName("isLast")
-     * @var bool
-     */
+    /** @Serializer\SerializedName("isLast") */
     private bool $isLast;
 
     /** @var ReleaseResult[]  */

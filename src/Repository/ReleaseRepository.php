@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DoppioGancio\Jira\Repository;
 
-use DoppioGancio\Jira\Domain\ReleaseResult;
 use DoppioGancio\Jira\Domain\ReleaseResults;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
@@ -33,7 +32,7 @@ class ReleaseRepository
      */
     public function list(array $params = []): PromiseInterface
     {
-        $url = 'https://sourceability.atlassian.net/rest/api/3/project/PM/version';
+        $url = '/rest/api/3/project/PM/version';
 
         if (! empty($params)) {
             $url = sprintf('%s?%s', $url, http_build_query($params));

@@ -32,17 +32,11 @@ class IssueRepository
      */
     public function search(array $params = []): PromiseInterface
     {
-        $url = 'https://sourceability.atlassian.net/rest/api/3/search';
+        $url = '/rest/api/3/search';
 
         if (! empty($params)) {
             $url = sprintf('%s?%s', $url, http_build_query($params));
         }
-
-        // https://sourceability.atlassian.net/rest/api/3/search
-        //?jql=project%3DPM+AND+fixVersion%3D%22next-release%22&maxResults=100&fields=fixVersions%
-
-        // https://sourceability.atlassian.net/rest/api/3/search
-        //?jql=project=PM AND fixVersion="next-release"&maxResults=100&fields=fixVersions
 
         return $this->client->requestAsync('GET', $url)
             ->then(function (ResponseInterface $response) {

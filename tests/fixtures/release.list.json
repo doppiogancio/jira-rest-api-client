@@ -1,13 +1,13 @@
 {
-  "self": "https://sourceability.atlassian.net/rest/api/3/project/PM/version?maxResults=3&orderBy=-releaseDate&startAt=0",
-  "nextPage": "https://sourceability.atlassian.net/rest/api/3/project/PM/version?maxResults=3&orderBy=-releaseDate&startAt=3",
+  "self": "https://my-domain.atlassian.net/rest/api/3/project/PM/version?maxResults=3&orderBy=-releaseDate&startAt=0",
+  "nextPage": "https://my-domain.atlassian.net/rest/api/3/project/PM/version?maxResults=3&orderBy=-releaseDate&startAt=3",
   "maxResults": 3,
   "startAt": 0,
   "total": 246,
   "isLast": false,
   "values": [
     {
-      "self": "https://sourceability.atlassian.net/rest/api/3/version/10539",
+      "self": "https://my-domain.atlassian.net/rest/api/3/version/10539",
       "id": "10539",
       "name": "next-release",
       "archived": false,
@@ -15,7 +15,7 @@
       "projectId": 10406
     },
     {
-      "self": "https://sourceability.atlassian.net/rest/api/3/version/10538",
+      "self": "https://my-domain.atlassian.net/rest/api/3/version/10538",
       "id": "10538",
       "name": "2021-11-08.1",
       "archived": false,
@@ -25,7 +25,7 @@
       "projectId": 10406
     },
     {
-      "self": "https://sourceability.atlassian.net/rest/api/3/version/10537",
+      "self": "https://my-domain.atlassian.net/rest/api/3/version/10537",
       "id": "10537",
       "name": "2021-11-04.1",
       "archived": false,
