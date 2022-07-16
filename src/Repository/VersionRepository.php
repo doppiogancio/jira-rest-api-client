@@ -11,7 +11,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use League\Uri\UriTemplate;
 use Psr\Http\Message\ResponseInterface;
 
-class VersionRepository extends AbstractRepository
+class VersionRepository extends BaseRepository
 {
     /**
      * @param array<string,int|string> $params
@@ -39,7 +39,7 @@ class VersionRepository extends AbstractRepository
     }
 
     /**
-     * @param array $params
+     * @param array<string,int|string> $params
      *
      * @return PromiseInterface<ProjectVersion>
      */

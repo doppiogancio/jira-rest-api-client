@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DoppioGancio\Jira\Repository;
 
 use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Serializer;
 
-abstract class AbstractRepository
+abstract class BaseRepository
 {
     protected ClientInterface $client;
     protected Serializer $serializer;
