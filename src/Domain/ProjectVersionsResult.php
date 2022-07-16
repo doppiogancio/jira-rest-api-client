@@ -7,7 +7,7 @@ namespace DoppioGancio\Jira\Domain;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Type;
 
-class ReleaseResults
+class ProjectVersionsResult
 {
     private string $self;
 
@@ -24,11 +24,9 @@ class ReleaseResults
     /** @Serializer\SerializedName("isLast") */
     private bool $isLast;
 
-    /** @var ReleaseResult[]  */
-
     /**
-     * @Type("array<int,DoppioGancio\Jira\Domain\ReleaseResult>")
-     * @var ReleaseResult[]
+     * @Type("array<int,DoppioGancio\Jira\Domain\ProjectVersion>")
+     * @var ProjectVersion[]
      */
     private array $values;
 
@@ -63,7 +61,7 @@ class ReleaseResults
     }
 
     /**
-     * @return ReleaseResult[]
+     * @return ProjectVersion[]
      */
     public function getValues(): array
     {

@@ -8,7 +8,7 @@ use DateTime;
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Type;
 
-class ReleaseResult
+class ProjectVersion
 {
     private string $self;
     private string $id;
@@ -27,6 +27,15 @@ class ReleaseResult
 
     /** @Serializer\SerializedName("projectId") */
     private int $projectId = 0;
+
+    /** @Serializer\SerializedName("issuesStatusForFixVersion") */
+    private ?IssuesStatusForFixVersion $issuesStatusForFixVersion = null;
+
+    /**
+     * @Type("array<int,DoppioGancio\Jira\Domain\Operation>")
+     * @var Operation[]
+     */
+    private array $operations = [];
 
     public function getSelf(): string
     {
@@ -66,5 +75,18 @@ class ReleaseResult
     public function getProjectId(): int
     {
         return $this->projectId;
+    }
+
+    public function getIssuesStatusForFixVersion(): ?IssuesStatusForFixVersion
+    {
+        return $this->issuesStatusForFixVersion;
+    }
+
+    /**
+     * @return Operation[]
+     */
+    public function getOperations(): array
+    {
+        return $this->operations;
     }
 }

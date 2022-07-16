@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace DoppioGancio\Jira\Repository;
 
-use DoppioGancio\Jira\Domain\ReleaseResults;
+use DoppioGancio\Jira\Domain\ProjectVersionsResult;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
 use JMS\Serializer\Serializer;
+use League\Uri\UriTemplate;
 use Psr\Http\Message\ResponseInterface;
 
-use function http_build_query;
-use function sprintf;
-
-class ReleaseRepository
+class ProjectRepository
 {
     private ClientInterface $client;
     private Serializer $serializer;
@@ -30,19 +28,21 @@ class ReleaseRepository
      *
      * @throws GuzzleException
      */
-    public function list(array $params = []): PromiseInterface
+    public function versions(string $projectID, array $params = []): PromiseInterface
     {
-        $url = '/rest/api/3/project/PM/version';
+        $params['project'] = $projectID;
 
-        if (! empty($params)) {
-            $url = sprintf('%s?%s', $url, http_build_query($params));
-        }
+        $uriTemplate = new UriTemplate(
+            '/rest/api/3/project/{project}/version{?startAt,maxResults,orderBy,query,status,expand}'
+        );
 
-        return $this->client->requestAsync('GET', $url)
+        $uri = $uriTemplate->expand($params);
+
+        return $this->client->requestAsync('GET', (string) $uri)
             ->then(function (ResponseInterface $response) {
                 return $this->serializer->deserialize(
                     (string) $response->getBody(),
-                    ReleaseResults::class,
+                    ProjectVersionsResult::class,
                     'json'
                 );
             });
