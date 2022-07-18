@@ -5,26 +5,13 @@ declare(strict_types=1);
 namespace DoppioGancio\Jira\Repository;
 
 use DoppioGancio\Jira\Domain\IssueSearchResult;
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
-use JMS\Serializer\Serializer;
+use League\Uri\UriTemplate;
 use Psr\Http\Message\ResponseInterface;
 
-use function http_build_query;
-use function sprintf;
-
-class IssueRepository
+class IssueRepository extends BaseRepository
 {
-    private ClientInterface $client;
-    private Serializer $serializer;
-
-    public function __construct(ClientInterface $client, Serializer $serializer)
-    {
-        $this->client     = $client;
-        $this->serializer = $serializer;
-    }
-
     /**
      * @param array<string,int|string> $params
      *
@@ -32,13 +19,13 @@ class IssueRepository
      */
     public function search(array $params = []): PromiseInterface
     {
-        $url = '/rest/api/3/search';
+        $uriTemplate = new UriTemplate(
+            '/rest/api/3/search{?jql,maxResults,validateQuery,fields[]*,expand,properties,fieldsByKeys}'
+        );
 
-        if (! empty($params)) {
-            $url = sprintf('%s?%s', $url, http_build_query($params));
-        }
+        $uri = $uriTemplate->expand($params);
 
-        return $this->client->requestAsync('GET', $url)
+        return $this->client->requestAsync('GET', (string) $uri)
             ->then(function (ResponseInterface $response) {
                 return $this->serializer->deserialize(
                     (string) $response->getBody(),

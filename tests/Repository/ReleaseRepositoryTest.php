@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Test\Jira\Repository;
+namespace DoppioGancio\Jira\Tests\Repository;
 
 use DateTime;
 use DoppioGancio\Jira\Client;
-use DoppioGancio\Jira\Domain\ReleaseResults;
-use DoppioGancio\Jira\Repository\ReleaseRepository;
+use DoppioGancio\Jira\Domain\ProjectVersionsResult;
+use DoppioGancio\Jira\Repository\ProjectRepository;
 use DoppioGancio\MockedClient\HandlerBuilder;
 use DoppioGancio\MockedClient\MockedGuzzleClientBuilder;
 use DoppioGancio\MockedClient\Route\RouteBuilder;
@@ -22,8 +22,8 @@ class ReleaseRepositoryTest extends TestCase
     {
         $repo = $this->getReleaseRepository();
 
-        $result = $repo->list([])->wait();
-        assert($result instanceof ReleaseResults);
+        $result = $repo->versions('PM')->wait();
+        assert($result instanceof ProjectVersionsResult);
 
         $this->assertCount(3, $result->getValues());
         $prefix = 'https://my-domain.atlassian.net/rest/api/3/project/PM/version';
@@ -55,14 +55,14 @@ class ReleaseRepositoryTest extends TestCase
             'maxResults' => '3',
         ];
 
-        $result = $repo->list($searchOptions)->wait();
-        assert($result instanceof ReleaseResults);
+        $result = $repo->versions('PM', $searchOptions)->wait();
+        assert($result instanceof ProjectVersionsResult);
 
         $this->assertCount(3, $result->getValues());
         $this->assertEquals('2021-11-08.1', $result->getValues()[1]->getName());
     }
 
-    public function getReleaseRepository(): ReleaseRepository
+    public function getReleaseRepository(): ProjectRepository
     {
         $handlerBuilder = new HandlerBuilder(
             Psr17FactoryDiscovery::findServerRequestFactory()
@@ -83,6 +83,6 @@ class ReleaseRepositoryTest extends TestCase
 
         $client = (new MockedGuzzleClientBuilder($handlerBuilder))->build();
 
-        return (new Client($client))->release();
+        return (new Client($client))->project();
     }
 }

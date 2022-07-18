@@ -72,8 +72,9 @@ DoppioGancio\Jira\Domain\IssueSearchResult Object
 ```
 
 ### Releases
+
 ```php
-$releases = $jira->release()->list()->wait();
+$releases = $jira->project()->versions()->wait();
 
 // will return
 DoppioGancio\Jira\Domain\ReleaseResults Object
