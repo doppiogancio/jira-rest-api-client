@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Test\Jira\Repository;
+namespace DoppioGancio\Jira\Tests\Repository;
 
 use DateTime;
 use DoppioGancio\Jira\Client;
@@ -22,7 +22,7 @@ class ReleaseRepositoryTest extends TestCase
     {
         $repo = $this->getReleaseRepository();
 
-        $result = $repo->versions([])->wait();
+        $result = $repo->versions('PM')->wait();
         assert($result instanceof ProjectVersionsResult);
 
         $this->assertCount(3, $result->getValues());
@@ -55,7 +55,7 @@ class ReleaseRepositoryTest extends TestCase
             'maxResults' => '3',
         ];
 
-        $result = $repo->versions($searchOptions)->wait();
+        $result = $repo->versions('PM', $searchOptions)->wait();
         assert($result instanceof ProjectVersionsResult);
 
         $this->assertCount(3, $result->getValues());

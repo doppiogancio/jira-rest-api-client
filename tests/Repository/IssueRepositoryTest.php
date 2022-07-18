@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Test\Jira\Repository;
+namespace DoppioGancio\Jira\Tests\Repository;
 
 use DoppioGancio\Jira\Client;
 use DoppioGancio\Jira\Domain\IssueSearchResult;

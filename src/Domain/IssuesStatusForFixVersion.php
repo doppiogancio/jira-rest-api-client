@@ -23,9 +23,19 @@ class IssuesStatusForFixVersion
         return $this->unmapped;
     }
 
+    public function setUnmapped(int $unmapped): void
+    {
+        $this->unmapped = $unmapped;
+    }
+
     public function getToDo(): int
     {
         return $this->toDo;
+    }
+
+    public function setToDo(int $toDo): void
+    {
+        $this->toDo = $toDo;
     }
 
     public function getInProgress(): int
@@ -33,8 +43,18 @@ class IssuesStatusForFixVersion
         return $this->inProgress;
     }
 
+    public function setInProgress(int $inProgress): void
+    {
+        $this->inProgress = $inProgress;
+    }
+
     public function getDone(): int
     {
         return $this->done;
+    }
+
+    public function setDone(int $done): void
+    {
+        $this->done = $done;
     }
 }

@@ -35,9 +35,19 @@ class ProjectVersionsResult
         return $this->self;
     }
 
+    public function setSelf(string $self): void
+    {
+        $this->self = $self;
+    }
+
     public function getNextPage(): string
     {
         return $this->nextPage;
+    }
+
+    public function setNextPage(string $nextPage): void
+    {
+        $this->nextPage = $nextPage;
     }
 
     public function getMaxResults(): int
@@ -45,9 +55,19 @@ class ProjectVersionsResult
         return $this->maxResults;
     }
 
+    public function setMaxResults(int $maxResults): void
+    {
+        $this->maxResults = $maxResults;
+    }
+
     public function getStartAt(): int
     {
         return $this->startAt;
+    }
+
+    public function setStartAt(int $startAt): void
+    {
+        $this->startAt = $startAt;
     }
 
     public function getTotal(): int
@@ -55,9 +75,19 @@ class ProjectVersionsResult
         return $this->total;
     }
 
+    public function setTotal(int $total): void
+    {
+        $this->total = $total;
+    }
+
     public function isLast(): bool
     {
         return $this->isLast;
+    }
+
+    public function setIsLast(bool $isLast): void
+    {
+        $this->isLast = $isLast;
     }
 
     /**
@@ -66,5 +96,13 @@ class ProjectVersionsResult
     public function getValues(): array
     {
         return $this->values;
+    }
+
+    /**
+     * @param ProjectVersion[] $values
+     */
+    public function setValues(array $values): void
+    {
+        $this->values = $values;
     }
 }

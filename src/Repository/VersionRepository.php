@@ -40,8 +40,6 @@ class VersionRepository extends BaseRepository
 
     /**
      * @param array<string,int|string> $params
-     *
-     * @return PromiseInterface<ProjectVersion>
      */
     public function get(string $id, array $params = []): PromiseInterface
     {
