@@ -4,6 +4,11 @@ parameters:
     paths:
         - src/
         - tests/
+    ignoreErrors:
+        -
+            message: '#Property .* does not accept object.#'
+            paths:
+                -  src/ApiClient.php
 includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
 

@@ -10,7 +10,14 @@ use DoppioGancio\Jira\ResourceManager\VersionManager;
 use GuzzleHttp\ClientInterface as HttpClient;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
+use ReflectionException;
 
+use function sprintf;
+use function ucfirst;
+
+/**
+ * @method pippo()
+ */
 class ApiClient
 {
     private HttpClient $client;
@@ -20,25 +27,27 @@ class ApiClient
     private ProjectManager $project;
     private VersionManager $version;
 
+    /**
+     * @throws ReflectionException
+     */
     public function __construct(HttpClient $client)
     {
         $this->client     = $client;
         $this->serializer = SerializerBuilder::create()->build();
 
-        $this->issue = new IssueManager(
-            $this->client,
-            $this->serializer
-        );
+        $resourceManagers = [
+            'issue',
+            'project',
+            'version',
+        ];
 
-        $this->project = new ProjectManager(
-            $this->client,
-            $this->serializer
-        );
-
-        $this->version = new VersionManager(
-            $this->client,
-            $this->serializer
-        );
+        foreach ($resourceManagers as $resourceManager) {
+            $class                    = sprintf('DoppioGancio\Jira\ResourceManager\%sManager', ucfirst($resourceManager));
+            $this->{$resourceManager} = new $class(
+                $this->client,
+                $this->serializer,
+            );
+        }
     }
 
     public function issue(): IssueManager
