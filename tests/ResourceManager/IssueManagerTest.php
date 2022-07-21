@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Tests\Repository;
+namespace DoppioGancio\Jira\Tests\ResourceManager;
 
-use DoppioGancio\Jira\Client;
-use DoppioGancio\Jira\Domain\IssueSearchResult;
-use DoppioGancio\Jira\Repository\IssueRepository;
+use DoppioGancio\Jira\ApiClient;
+use DoppioGancio\Jira\Resource\IssueSearchResult;
+use DoppioGancio\Jira\ResourceManager\IssueManager;
 use DoppioGancio\MockedClient\HandlerBuilder;
 use DoppioGancio\MockedClient\MockedGuzzleClientBuilder;
 use DoppioGancio\MockedClient\Route\RouteBuilder;
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 use function assert;
 
-class IssueRepositoryTest extends TestCase
+class IssueManagerTest extends TestCase
 {
     public function testList(): void
     {
@@ -54,7 +54,7 @@ class IssueRepositoryTest extends TestCase
         $this->assertEquals('ED-1', $response->getIssues()[0]->getKey());
     }
 
-    public function getIssueRepository(): IssueRepository
+    public function getIssueRepository(): IssueManager
     {
         $handlerBuilder = new HandlerBuilder(
             Psr17FactoryDiscovery::findServerRequestFactory()
@@ -75,6 +75,6 @@ class IssueRepositoryTest extends TestCase
 
         $client = (new MockedGuzzleClientBuilder($handlerBuilder))->build();
 
-        return (new Client($client))->issue();
+        return (new ApiClient($client))->issue();
     }
 }

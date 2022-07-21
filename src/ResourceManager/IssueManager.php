@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Repository;
+namespace DoppioGancio\Jira\ResourceManager;
 
-use DoppioGancio\Jira\Domain\IssueSearchResult;
+use DoppioGancio\Jira\Resource\IssueSearchResult;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
 use League\Uri\UriTemplate;
 use Psr\Http\Message\ResponseInterface;
 
-class IssueRepository extends BaseRepository
+class IssueManager extends BaseResourceManager
 {
     /**
      * @param array<string,int|string> $params

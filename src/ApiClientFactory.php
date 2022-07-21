@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace DoppioGancio\Jira;
 
-use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client as HttpClient;
 
-class ClientFactory
+class ApiClientFactory
 {
-    public static function create(string $baseUri, string $username, string $password): Client
+    public static function create(string $baseUri, string $username, string $password): ApiClient
     {
-        return new Client(
-            new GuzzleClient([
+        return new ApiClient(
+            new HttpClient([
                 'base_uri' => $baseUri,
                 'auth' => [
                     $username,

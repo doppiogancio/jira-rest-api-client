@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Tests\Repository;
+namespace DoppioGancio\Jira\Tests\ResourceManager;
 
 use DateTime;
-use DoppioGancio\Jira\Client;
-use DoppioGancio\Jira\Domain\ProjectVersionsResult;
-use DoppioGancio\Jira\Repository\ProjectRepository;
+use DoppioGancio\Jira\ApiClient;
+use DoppioGancio\Jira\Resource\ProjectVersionsResult;
+use DoppioGancio\Jira\ResourceManager\ProjectManager;
 use DoppioGancio\MockedClient\HandlerBuilder;
 use DoppioGancio\MockedClient\MockedGuzzleClientBuilder;
 use DoppioGancio\MockedClient\Route\RouteBuilder;
@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 use function assert;
 
-class ReleaseRepositoryTest extends TestCase
+class ReleaseManagerTest extends TestCase
 {
     public function testList(): void
     {
@@ -62,7 +62,7 @@ class ReleaseRepositoryTest extends TestCase
         $this->assertEquals('2021-11-08.1', $result->getValues()[1]->getName());
     }
 
-    public function getReleaseRepository(): ProjectRepository
+    public function getReleaseRepository(): ProjectManager
     {
         $handlerBuilder = new HandlerBuilder(
             Psr17FactoryDiscovery::findServerRequestFactory()
@@ -83,6 +83,6 @@ class ReleaseRepositoryTest extends TestCase
 
         $client = (new MockedGuzzleClientBuilder($handlerBuilder))->build();
 
-        return (new Client($client))->project();
+        return (new ApiClient($client))->project();
     }
 }
