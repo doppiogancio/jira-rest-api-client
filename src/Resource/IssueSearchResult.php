@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Domain;
+namespace DoppioGancio\Jira\Resource;
 
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Type;
@@ -19,7 +19,7 @@ class IssueSearchResult
     private int $total;
 
     /**
-     * @Type("array<int,DoppioGancio\Jira\Domain\Issue>")
+     * @Type("array<int,DoppioGancio\Jira\Resource\Issue>")
      * @var Issue[]
      */
     private array $issues;

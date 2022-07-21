@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Domain;
+namespace DoppioGancio\Jira\Resource;
 
 use DateTime;
 use JMS\Serializer\Annotation as Serializer;
@@ -32,7 +32,7 @@ class ProjectVersion
     private ?IssuesStatusForFixVersion $issuesStatusForFixVersion = null;
 
     /**
-     * @Type("array<int,DoppioGancio\Jira\Domain\Operation>")
+     * @Type("array<int,DoppioGancio\Jira\Resource\Operation>")
      * @var Operation[]
      */
     private array $operations = [];

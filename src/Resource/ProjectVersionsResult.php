@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Domain;
+namespace DoppioGancio\Jira\Resource;
 
 use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\Type;
@@ -25,7 +25,7 @@ class ProjectVersionsResult
     private bool $isLast;
 
     /**
-     * @Type("array<int,DoppioGancio\Jira\Domain\ProjectVersion>")
+     * @Type("array<int,DoppioGancio\Jira\Resource\ProjectVersion>")
      * @var ProjectVersion[]
      */
     private array $values;

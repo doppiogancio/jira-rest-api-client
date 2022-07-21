@@ -2,27 +2,16 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Repository;
+namespace DoppioGancio\Jira\ResourceManager;
 
-use DoppioGancio\Jira\Domain\ProjectVersionsResult;
-use GuzzleHttp\ClientInterface;
+use DoppioGancio\Jira\Resource\ProjectVersionsResult;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
-use JMS\Serializer\Serializer;
 use League\Uri\UriTemplate;
 use Psr\Http\Message\ResponseInterface;
 
-class ProjectRepository
+class ProjectManager extends BaseResourceManager
 {
-    private ClientInterface $client;
-    private Serializer $serializer;
-
-    public function __construct(ClientInterface $client, Serializer $serializer)
-    {
-        $this->client     = $client;
-        $this->serializer = $serializer;
-    }
-
     /**
      * @param array<string,int|string> $params
      *

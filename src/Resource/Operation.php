@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Domain;
+namespace DoppioGancio\Jira\Resource;
 
 class Operation
 {

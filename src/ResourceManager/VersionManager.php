@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace DoppioGancio\Jira\Repository;
+namespace DoppioGancio\Jira\ResourceManager;
 
-use DoppioGancio\Jira\Domain\ProjectVersion;
-use DoppioGancio\Jira\Domain\ProjectVersionsResult;
+use DoppioGancio\Jira\Resource\ProjectVersion;
+use DoppioGancio\Jira\Resource\ProjectVersionsResult;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
 use League\Uri\UriTemplate;
 use Psr\Http\Message\ResponseInterface;
 
-class VersionRepository extends BaseRepository
+class VersionManager extends BaseResourceManager
 {
     /**
      * @param array<string,int|string> $params
